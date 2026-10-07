@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/cube_all", "textures": { "all": "create_tinkers:block/andesite_smeltery_bricks" } }

@@ -29,6 +29,8 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.world.level.block.SoundType;
+
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(CreateTinkers.MODID)
@@ -44,10 +46,13 @@ public class CreateTinkers {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-    // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+
+
+
+    public static final DeferredBlock<Block> ANDESITE_SMELTERY_BRICKS = BLOCKS.registerSimpleBlock("andesite_smeltery_bricks",
+            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(2.0f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.STONE));
+    public static final DeferredItem<BlockItem> ANDESITE_SMELTERY_BRICKS_ITEM = ITEMS.registerSimpleBlockItem("andesite_smeltery_bricks", ANDESITE_SMELTERY_BRICKS);
+
 
     // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
     public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
@@ -102,8 +107,10 @@ public class CreateTinkers {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(EXAMPLE_BLOCK_ITEM);
+            event.accept(ANDESITE_SMELTERY_BRICKS_ITEM);
+
         }
     }
 
@@ -114,3 +121,6 @@ public class CreateTinkers {
         LOGGER.info("HELLO from server starting");
     }
 }
+
+
+
